@@ -3,7 +3,6 @@ import {
   Eye,
   Target,
   Heart,
-  Sparkles,
   Users,
   Video,
   GraduationCap,
@@ -15,6 +14,7 @@ import {
   Code2,
   Check,
 } from "lucide-react";
+import { FlagDash } from "@/components/FlagDash";
 import { PageHeader } from "@/components/PageHeader";
 import { CTASection } from "@/components/CTASection";
 import logo from "@/assets/logo-mark.png";
@@ -198,8 +198,8 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-flex items-center gap-2 text-secondary font-semibold uppercase tracking-widest text-sm mb-4">
-                <Sparkles className="w-4 h-4" />
+              <span className="inline-flex items-center gap-3 text-secondary font-semibold uppercase tracking-widest text-sm mb-4">
+                <FlagDash size="sm" />
                 Qui sommes-nous ?
               </span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-6">
@@ -246,7 +246,7 @@ const About = () => {
                 />
               </div>
               <p className="mt-6 font-display text-lg text-primary italic tracking-wide">
-                Empowering Chadian Women in AI &amp; Tech
+                L'IA au féminin, depuis le Tchad
               </p>
             </motion.aside>
           </div>

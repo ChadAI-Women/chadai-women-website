@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Sparkles } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FlagDash } from "@/components/FlagDash";
 import { useNavigate } from "react-router-dom";
 
 const heroImage =
@@ -13,11 +14,14 @@ export const HeroSection = () => {
       id="accueil"
       className="min-h-screen flex items-center pt-24 pb-16 gradient-hero relative overflow-hidden"
     >
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-20">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-secondary/30 blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/3 w-64 h-64 rounded-full bg-primary/20 blur-2xl animate-float" style={{ animationDelay: '2s' }} />
-      </div>
+      {/* Motif tissé signature, fondu vers la gauche */}
+      <div
+        className="absolute inset-y-0 right-0 w-1/2 bg-weave opacity-[0.13]"
+        style={{
+          maskImage: "linear-gradient(to left, black 60%, transparent)",
+          WebkitMaskImage: "linear-gradient(to left, black 60%, transparent)",
+        }}
+      />
 
       <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -31,9 +35,9 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary font-medium text-sm mb-6"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-secondary/30 bg-secondary/10 text-primary font-semibold text-sm mb-6"
             >
-              <Sparkles className="w-4 h-4" />
+              <FlagDash size="sm" />
               Première communauté tchadienne en IA
             </motion.div>
 
@@ -103,15 +107,18 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative"
           >
-            <div className="relative">
+            <div className="relative max-w-md mx-auto lg:max-w-none">
+              {/* Arche décalée en écho, or */}
+              <div
+                aria-hidden
+                className="absolute inset-0 translate-x-5 translate-y-5 rounded-t-[10rem] rounded-b-3xl border-2 border-secondary/60"
+              />
               <img
                 src={heroImage}
                 alt="ChadAI Women - Femmes africaines en technologie"
-                className="w-full h-auto rounded-3xl shadow-elevated animate-float"
+                className="relative w-full h-auto rounded-t-[10rem] rounded-b-3xl shadow-elevated object-cover"
               />
-              {/* Decorative elements */}
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-2xl gradient-primary opacity-80" />
-              <div className="absolute -top-4 -right-4 w-16 h-16 rounded-xl gradient-accent opacity-80" />
+              <FlagDash className="absolute -bottom-8 left-1/2 -translate-x-1/2" />
             </div>
           </motion.div>
         </div>

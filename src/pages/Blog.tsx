@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { FlagDash } from "@/components/FlagDash";
 import { PageHeader } from "@/components/PageHeader";
 import { cn } from "@/lib/utils";
 
@@ -96,8 +97,8 @@ const Blog = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12 max-w-2xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2 text-secondary font-semibold uppercase tracking-widest text-xs mb-4">
-              <Sparkles className="w-4 h-4" />
+            <span className="inline-flex items-center gap-3 text-secondary font-semibold uppercase tracking-widest text-xs mb-4">
+              <FlagDash size="sm" />
               Média communautaire
             </span>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { BookOpen, Sparkles, Rocket } from "lucide-react";
+import { BookOpen, Flame, Rocket } from "lucide-react";
+import { FlagDash } from "@/components/FlagDash";
 
 const missions = [
   {
@@ -9,7 +10,7 @@ const missions = [
       "Des formations pratiques et accessibles en IA, Data Science, Machine Learning et développement. Du niveau débutant à avancé, nous vous accompagnons à chaque étape de votre parcours d'apprentissage.",
   },
   {
-    icon: Sparkles,
+    icon: Flame,
     title: "Inspirer",
     description:
       "Des modèles féminins, des success stories et des rencontres avec des femmes leaders qui prouvent que c'est possible. Vous n'êtes plus seules dans votre parcours tech.",
@@ -37,9 +38,10 @@ export const MissionSection = () => {
           <span className="inline-block text-secondary font-semibold uppercase tracking-widest text-sm mb-4">
             Notre Mission
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
             Inspirer, Former, Connecter, Autonomiser
           </h2>
+          <FlagDash className="mb-5" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Nous créons un écosystème où chaque femme tchadienne peut développer
             ses compétences en IA et contribuer à l'innovation technologique
