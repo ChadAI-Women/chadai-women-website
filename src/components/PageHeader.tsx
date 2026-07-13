@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FlagDash } from "@/components/FlagDash";
 
 interface PageHeaderProps {
   eyebrow?: string;
@@ -21,9 +22,10 @@ export const PageHeader = ({ eyebrow, title, description }: PageHeaderProps) => 
               {eyebrow}
             </span>
           )}
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4">
             {title}
           </h1>
+          <FlagDash className="mb-5" />
           {description && (
             <p className="text-muted-foreground text-lg">{description}</p>
           )}

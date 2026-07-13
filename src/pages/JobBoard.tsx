@@ -8,7 +8,8 @@ import {
   Briefcase,
   GraduationCap,
   Award,
-  Sparkles,
+  LayoutGrid,
+  FileText,
   Code2,
   Users,
   Megaphone,
@@ -129,14 +130,14 @@ const opportunities: Opportunity[] = [
 ];
 
 const typeFilters: { label: string; value: OppType | "Tous"; icon: typeof Briefcase }[] = [
-  { label: "Tous", value: "Tous", icon: Sparkles },
+  { label: "Tous", value: "Tous", icon: LayoutGrid },
   { label: "Emplois", value: "Emploi", icon: Briefcase },
   { label: "Stages", value: "Stage", icon: GraduationCap },
   { label: "Bourses", value: "Bourse", icon: Award },
   { label: "Fellowships", value: "Fellowship", icon: Users },
   { label: "Hackathons", value: "Hackathon", icon: Code2 },
   { label: "Conférences", value: "Conférence", icon: Megaphone },
-  { label: "Appels à candidatures", value: "Appel à candidatures", icon: Sparkles },
+  { label: "Appels à candidatures", value: "Appel à candidatures", icon: FileText },
 ];
 
 const levels: (Level | "Tous")[] = ["Tous", "Débutant", "Intermédiaire", "Avancé"];

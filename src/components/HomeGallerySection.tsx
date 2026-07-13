@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { FlagDash } from "@/components/FlagDash";
 
 const photos = [
   {
@@ -46,6 +47,7 @@ export const HomeGallerySection = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-4">
             Nos actions en images
           </h2>
+          <FlagDash className="mb-5" />
           <p className="text-foreground/75 text-lg leading-relaxed">
             Découvrez quelques moments marquants de nos formations, webinaires, ateliers,
             panels et initiatives en faveur des femmes tchadiennes dans l'IA et la technologie.
