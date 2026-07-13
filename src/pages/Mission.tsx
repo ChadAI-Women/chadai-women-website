@@ -203,7 +203,7 @@ const About = () => {
                 Qui sommes-nous ?
               </span>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-6">
-                La première communauté tchadienne dédiée aux femmes en IA
+                La première communauté de femmes tchadiennes en IA
               </h2>
               <div className="text-muted-foreground leading-relaxed text-base md:text-lg space-y-4">
                 {quiSommesNous.map((para) => (
