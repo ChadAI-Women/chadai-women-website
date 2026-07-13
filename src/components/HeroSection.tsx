@@ -3,9 +3,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FlagDash } from "@/components/FlagDash";
 import { useNavigate } from "react-router-dom";
-
-const heroImage =
-  "https://images.unsplash.com/photo-1573497019418-b400bb3ab074?auto=format&fit=crop&w=1200&q=80";
+import heroImage from "@/assets/hero-community.png";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
@@ -96,16 +94,16 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative"
           >
-            <div className="relative max-w-md mx-auto lg:max-w-none">
-              {/* Arche décalée en écho, or */}
+            <div className="relative">
+              {/* Cadre décalé en écho, or */}
               <div
                 aria-hidden
-                className="absolute inset-0 translate-x-5 translate-y-5 rounded-t-[10rem] rounded-b-3xl border-2 border-secondary/60"
+                className="absolute inset-0 translate-x-5 translate-y-5 rounded-3xl border-2 border-secondary/60"
               />
               <img
                 src={heroImage}
-                alt="ChadAI Women - Femmes africaines en technologie"
-                className="relative w-full h-auto rounded-t-[10rem] rounded-b-3xl shadow-elevated object-cover"
+                alt="Femmes tchadiennes collaborant sur un projet d'intelligence artificielle"
+                className="relative w-full h-auto rounded-3xl shadow-elevated object-cover"
               />
               <FlagDash className="absolute -bottom-8 left-1/2 -translate-x-1/2" />
             </div>
