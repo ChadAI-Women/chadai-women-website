@@ -38,7 +38,7 @@ export const HeroSection = () => {
               className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-secondary/30 bg-secondary/10 text-primary font-semibold text-sm mb-6"
             >
               <FlagDash size="sm" />
-              Première communauté tchadienne en IA
+              Première communauté de femmes tchadiennes en IA
             </motion.div>
 
             <motion.h1
@@ -56,22 +56,11 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg text-muted-foreground mb-4 max-w-xl"
+              className="text-lg text-muted-foreground mb-8 max-w-xl"
             >
-              Première communauté tchadienne dédiée aux femmes en IA et
-              technologie
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-muted-foreground mb-8 max-w-xl"
-            >
-              Nous formons, inspirons et accompagnons les femmes tchadiennes
-              pour qu'elles deviennent des leaders dans le domaine de
-              l'intelligence artificielle et façonnent l'avenir technologique
-              de l'Afrique.
+              Nous formons, inspirons et accompagnons celles qui deviendront
+              des leaders de l'IA et façonneront l'avenir technologique du
+              Tchad et de l'Afrique.
             </motion.p>
 
             <motion.div

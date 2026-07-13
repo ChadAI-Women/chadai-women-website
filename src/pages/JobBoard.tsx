@@ -13,6 +13,7 @@ import {
   Code2,
   Users,
   Megaphone,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -145,12 +146,12 @@ const locations: (Loc | "Tous")[] = ["Tous", "Tchad", "Afrique", "International"
 
 const typeColor: Record<OppType, string> = {
   Emploi: "bg-primary/10 text-primary",
-  Stage: "bg-secondary/10 text-secondary",
-  Bourse: "bg-secondary/10 text-secondary",
+  Stage: "bg-secondary/15 text-primary",
+  Bourse: "bg-secondary/15 text-primary",
   Fellowship: "bg-primary/10 text-primary",
-  Hackathon: "bg-secondary/10 text-secondary",
+  Hackathon: "bg-secondary/15 text-primary",
   Conférence: "bg-primary/10 text-primary",
-  "Appel à candidatures": "bg-secondary/10 text-secondary",
+  "Appel à candidatures": "bg-secondary/15 text-primary",
 };
 
 const formatDate = (iso: string) =>
@@ -166,19 +167,31 @@ const Opportunities = () => {
   const [level, setLevel] = useState<Level | "Tous">("Tous");
   const [loc, setLoc] = useState<Loc | "Tous">("Tous");
 
+  const hasActiveFilters =
+    query.trim() !== "" || type !== "Tous" || level !== "Tous" || loc !== "Tous";
+
+  const resetFilters = () => {
+    setQuery("");
+    setType("Tous");
+    setLevel("Tous");
+    setLoc("Tous");
+  };
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return opportunities.filter((o) => {
-      if (type !== "Tous" && o.type !== type) return false;
-      if (level !== "Tous" && o.level !== level) return false;
-      if (loc !== "Tous" && o.location !== loc) return false;
-      if (!q) return true;
-      return (
-        o.title.toLowerCase().includes(q) ||
-        o.organization.toLowerCase().includes(q) ||
-        o.description.toLowerCase().includes(q)
-      );
-    });
+    return opportunities
+      .filter((o) => {
+        if (type !== "Tous" && o.type !== type) return false;
+        if (level !== "Tous" && o.level !== level) return false;
+        if (loc !== "Tous" && o.location !== loc) return false;
+        if (!q) return true;
+        return (
+          o.title.toLowerCase().includes(q) ||
+          o.organization.toLowerCase().includes(q) ||
+          o.description.toLowerCase().includes(q)
+        );
+      })
+      .sort((a, b) => a.deadline.localeCompare(b.deadline));
   }, [query, type, level, loc]);
 
   return (
@@ -189,23 +202,23 @@ const Opportunities = () => {
         description="Emplois, stages, bourses, fellowships, hackathons, conférences et appels à candidatures — sélectionnés pour les femmes tchadiennes en tech et en IA."
       />
 
-      <section className="py-12 bg-card border-b border-border">
+      <section className="py-8 bg-card border-b border-border">
         <div className="section-container">
           {/* Search */}
-          <div className="max-w-2xl mx-auto mb-8">
+          <div className="max-w-2xl mx-auto mb-5">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Rechercher une opportunité..."
-                className="pl-12 h-14 rounded-full bg-background border-border text-base shadow-soft"
+                className="pl-12 h-12 rounded-full bg-background border-border text-base shadow-soft"
               />
             </div>
           </div>
 
-          {/* Type pills */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {/* Type pills — défilement horizontal sur mobile, centrées sur desktop */}
+          <div className="no-scrollbar flex gap-2 mb-5 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center sm:overflow-visible">
             {typeFilters.map((f) => {
               const active = type === f.value;
               const Icon = f.icon;
@@ -214,7 +227,7 @@ const Opportunities = () => {
                   key={f.value}
                   onClick={() => setType(f.value)}
                   className={cn(
-                    "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all border",
+                    "inline-flex shrink-0 items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all border whitespace-nowrap",
                     active
                       ? "bg-primary text-primary-foreground border-primary shadow-soft"
                       : "bg-background text-primary border-border hover:border-secondary hover:text-secondary"
@@ -228,7 +241,7 @@ const Opportunities = () => {
           </div>
 
           {/* Sub filters */}
-          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
                 Niveau d'expérience
@@ -272,24 +285,41 @@ const Opportunities = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="py-16 bg-background">
-        <div className="section-container">
-          <div className="flex items-center justify-between mb-8">
+          {/* Compteur + réinitialisation — retour immédiat sous les filtres */}
+          <div className="flex items-center justify-center gap-4 mt-6">
             <p className="text-sm text-muted-foreground">
               <span className="font-bold text-primary">{filtered.length}</span>{" "}
               opportunité{filtered.length > 1 ? "s" : ""} trouvée
               {filtered.length > 1 ? "s" : ""}
             </p>
+            {hasActiveFilters && (
+              <button
+                onClick={resetFilters}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-secondary transition-colors"
+              >
+                <X className="w-4 h-4" />
+                Réinitialiser
+              </button>
+            )}
           </div>
+        </div>
+      </section>
 
+      <section className="py-12 bg-background">
+        <div className="section-container">
           {filtered.length === 0 ? (
             <div className="text-center py-20 bg-card rounded-2xl">
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground mb-4">
                 Aucune opportunité ne correspond à votre recherche.
               </p>
+              <button
+                onClick={resetFilters}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-secondary transition-colors"
+              >
+                <X className="w-4 h-4" />
+                Réinitialiser les filtres
+              </button>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
