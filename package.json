@@ -2,9 +2,6 @@
   "name": "chadai-women-platform",
   "private": true,
   "version": "0.1.0",
-  "workspaces": [
-    "web"
-  ],
   "scripts": {
     "dev": "npm --prefix web run dev -- --host 0.0.0.0 --port 8082",
     "dev:web": "npm --prefix web run dev -- --host 0.0.0.0 --port 8082",
