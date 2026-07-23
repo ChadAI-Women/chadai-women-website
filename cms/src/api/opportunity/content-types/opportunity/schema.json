@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "opportunities",
+  "info": {
+    "singularName": "opportunity",
+    "pluralName": "opportunities",
+    "displayName": "Opportunite",
+    "description": "Emplois, stages, bourses, appels a candidatures et evenements externes"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "organization": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "emploi",
+        "stage",
+        "bourse",
+        "fellowship",
+        "hackathon",
+        "conference",
+        "appel"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "enumeration",
+      "enum": [
+        "tchad",
+        "afrique",
+        "international",
+        "online"
+      ],
+      "required": true
+    },
+    "experienceLevel": {
+      "type": "enumeration",
+      "enum": [
+        "debutant",
+        "intermediaire",
+        "avance"
+      ]
+    },
+    "deadline": {
+      "type": "date"
+    },
+    "applyUrl": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
