@@ -1,0 +1,20 @@
+{
+  "name": "chadai-women-platform",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm --prefix web run dev -- --host 0.0.0.0 --port 8082",
+    "dev:web": "npm --prefix web run dev -- --host 0.0.0.0 --port 8082",
+    "dev:cms": "npm --prefix cms run develop",
+    "build": "npm --prefix web run build",
+    "build:web": "npm --prefix web run build",
+    "build:cms": "npm --prefix cms run build",
+    "preview:web": "npm --prefix web run preview",
+    "lint:web": "npm --prefix web run lint",
+    "cms": "npm --prefix cms run strapi",
+    "cms:start": "npm --prefix cms run start"
+  }
+}
