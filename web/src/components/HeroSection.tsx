@@ -21,6 +21,20 @@ export const HeroSection = () => {
         }}
       />
 
+      {/* Formes floues flottantes — profondeur et mouvement doux */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -top-20 -left-24 h-72 w-72 rounded-full bg-secondary/20 blur-3xl"
+        animate={{ y: [0, 24, 0], x: [0, 12, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-primary/15 blur-3xl"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+
       <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -94,7 +108,11 @@ export const HeroSection = () => {
             transition={{ duration: 0.45, delay: 0.1 }}
             className="relative"
           >
-            <div className="relative">
+            <motion.div
+              className="relative"
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
               {/* Cadre décalé en écho, or */}
               <div
                 aria-hidden
@@ -106,7 +124,7 @@ export const HeroSection = () => {
                 className="relative w-full h-auto rounded-3xl shadow-elevated object-cover"
               />
               <FlagDash className="absolute -bottom-8 left-1/2 -translate-x-1/2" />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
