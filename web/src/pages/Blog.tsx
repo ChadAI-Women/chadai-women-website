@@ -65,8 +65,19 @@ type ActiveCategory = (typeof categories)[number];
 const categoryIcon = (category: ActiveCategory) =>
   category === "Tous" ? LayoutGrid : categoryMeta[category].Icon;
 
-const ArticleMeta = ({ post }: { post: BlogPost }) => (
-  <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+const ArticleMeta = ({
+  post,
+  inverted = false,
+}: {
+  post: BlogPost;
+  inverted?: boolean;
+}) => (
+  <div
+    className={cn(
+      "flex flex-wrap items-center gap-4 text-xs",
+      inverted ? "text-primary-foreground/75" : "text-muted-foreground"
+    )}
+  >
     <span className="flex items-center gap-1.5">
       <Calendar className="h-3.5 w-3.5" />
       {post.date}
@@ -230,7 +241,7 @@ const Blog = () => {
                       {featured.title}
                     </h3>
                   </div>
-                  <ArticleMeta post={featured} />
+                  <ArticleMeta post={featured} inverted />
                 </div>
               </div>
               <div className="flex flex-col justify-center p-8 md:p-10">
