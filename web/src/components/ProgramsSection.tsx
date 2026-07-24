@@ -100,11 +100,11 @@ export const ProgramsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-3xl overflow-hidden shadow-soft transition-all duration-300 hover:-translate-y-2 hover:shadow-elevated"
+              className="group bg-card rounded-3xl overflow-hidden shadow-soft transition-all duration-300 hover:-translate-y-2 hover:shadow-elevated"
             >
               {/* Icon Header */}
-              <div className="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <program.icon className="w-20 h-20 text-primary-foreground" />
+              <div className="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center overflow-hidden">
+                <program.icon className="w-20 h-20 text-primary-foreground transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" />
               </div>
 
               {/* Content */}

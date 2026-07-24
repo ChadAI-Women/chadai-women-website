@@ -72,11 +72,19 @@ export const StatsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center"
+              className="group text-center"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-secondary/20 mb-4">
+              <motion.div
+                initial={{ scale: 0.6, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.15, type: "spring", bounce: 0.5 }}
+                className="relative inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-secondary/20 mb-4 transition-transform duration-300 group-hover:scale-110"
+              >
+                {/* Anneau pulsé */}
+                <span className="absolute inset-0 rounded-2xl ring-2 ring-secondary/40 animate-ping-slow" aria-hidden />
                 <stat.icon className="w-7 h-7 text-secondary" />
-              </div>
+              </motion.div>
               <h3 className="font-display text-3xl lg:text-4xl font-bold text-secondary mb-2">
                 <Counter target={stat.value} suffix={stat.suffix} />
               </h3>

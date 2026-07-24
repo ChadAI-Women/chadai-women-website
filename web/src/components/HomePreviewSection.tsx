@@ -48,8 +48,8 @@ export const HomePreviewSection = () => {
                 to={preview.to}
                 className="group block bg-background rounded-2xl p-6 shadow-soft hover:shadow-elevated transition-all hover:-translate-y-1 h-full"
               >
-                <div className="w-14 h-14 rounded-2xl gradient-accent flex items-center justify-center mb-4">
-                  <preview.icon className="w-7 h-7 text-accent-foreground" />
+                <div className="w-14 h-14 rounded-2xl gradient-accent flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                  <preview.icon className="w-7 h-7 text-accent-foreground transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <h3 className="font-display text-xl font-bold text-primary mb-2">
                   {preview.title}
