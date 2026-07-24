@@ -5,13 +5,17 @@ import {
   BookOpen,
   Calendar,
   Clock,
+  LayoutGrid,
   Lightbulb,
   Megaphone,
   Newspaper,
-  Sparkles,
+  Search,
   Trophy,
   UserRound,
+  X,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { FlagDash } from "@/components/FlagDash";
 import { PageHeader } from "@/components/PageHeader";
 import { cn } from "@/lib/utils";
@@ -58,6 +62,9 @@ const categoryMeta: Record<
 const categories = ["Tous", ...Object.keys(categoryMeta)] as const;
 type ActiveCategory = (typeof categories)[number];
 
+const categoryIcon = (category: ActiveCategory) =>
+  category === "Tous" ? LayoutGrid : categoryMeta[category].Icon;
+
 const ArticleMeta = ({ post }: { post: BlogPost }) => (
   <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
     <span className="flex items-center gap-1.5">
@@ -84,16 +91,33 @@ const CategoryBadge = ({ category }: { category: BlogCategory }) => {
 
 const Blog = () => {
   const [active, setActive] = useState<ActiveCategory>("Tous");
+  const [query, setQuery] = useState("");
   const posts = useStrapiArticles(blogPosts);
 
-  const filtered = useMemo(
-    () =>
-      active === "Tous"
-        ? posts
-        : posts.filter((post) => post.category === active),
-    [active, posts]
-  );
-  const featured = filtered.find((post) => post.featured) ?? filtered[0];
+  const hasActiveFilters = query.trim() !== "" || active !== "Tous";
+
+  const resetFilters = () => {
+    setQuery("");
+    setActive("Tous");
+  };
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return posts.filter((post) => {
+      if (active !== "Tous" && post.category !== active) return false;
+      if (!q) return true;
+      return (
+        post.title.toLowerCase().includes(q) ||
+        post.excerpt.toLowerCase().includes(q) ||
+        post.category.toLowerCase().includes(q)
+      );
+    });
+  }, [active, query, posts]);
+
+  // L'article « à la une » ne s'affiche que sans recherche ni filtre actif.
+  const featured = hasActiveFilters
+    ? undefined
+    : filtered.find((post) => post.featured) ?? filtered[0];
   const articles = featured
     ? filtered.filter((post) => post.title !== featured.title)
     : filtered;
@@ -113,7 +137,7 @@ const Blog = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "0px 0px -15% 0px" }}
             transition={{ duration: 0.45 }}
-            className="mb-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end"
+            className="mb-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end"
           >
             <div>
               <span className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-secondary-ink">
@@ -131,21 +155,59 @@ const Blog = () => {
             </p>
           </motion.div>
 
-          <div className="mb-10 flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActive(category)}
-                className={cn(
-                  "rounded-full border px-5 py-2.5 text-sm font-semibold transition-all",
-                  active === category
-                    ? "border-primary bg-primary text-primary-foreground shadow-md"
-                    : "border-primary/15 text-primary hover:bg-primary/5"
-                )}
-              >
-                {category === "Tous" ? "Tous" : categoryMeta[category].label}
-              </button>
-            ))}
+          {/* Barre de recherche */}
+          <div className="mb-6 rounded-2xl border border-primary/10 bg-background p-5 shadow-soft">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Rechercher un article par titre, thème ou mot-clé..."
+                className="h-12 rounded-full border-border bg-card pl-12 text-base"
+              />
+            </div>
+          </div>
+
+          {/* Filtres par catégorie + compteur */}
+          <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => {
+                const Icon = categoryIcon(category);
+                const isActive = active === category;
+
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setActive(category)}
+                    className={cn(
+                      "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all",
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground shadow-soft"
+                        : "border-primary/15 bg-background text-primary hover:border-secondary hover:text-secondary"
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {category === "Tous" ? "Tous" : categoryMeta[category].label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <span>
+                <strong className="text-primary">{filtered.length}</strong> article
+                {filtered.length > 1 ? "s" : ""}
+              </span>
+              {hasActiveFilters && (
+                <button
+                  onClick={resetFilters}
+                  className="inline-flex items-center gap-1.5 font-semibold text-primary hover:text-secondary"
+                >
+                  <X className="h-4 w-4" />
+                  Réinitialiser
+                </button>
+              )}
+            </div>
           </div>
 
           {featured && (
@@ -160,8 +222,8 @@ const Blog = () => {
                 <div className="absolute inset-0 bg-weave opacity-10" />
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em]">
-                      <Sparkles className="h-4 w-4" />
+                    <span className="inline-flex items-center gap-3 rounded-full bg-primary-foreground/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em]">
+                      <FlagDash size="sm" />
                       À la une
                     </span>
                     <h3 className="mt-8 max-w-xl font-display text-3xl font-bold leading-tight md:text-5xl">
@@ -192,30 +254,6 @@ const Blog = () => {
             </motion.article>
           )}
 
-          <div className="mb-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {(Object.keys(categoryMeta) as BlogCategory[]).map((category) => {
-              const meta = categoryMeta[category];
-              const Icon = meta.Icon;
-
-              return (
-                <div
-                  key={category}
-                  className="rounded-2xl border border-border/70 bg-background p-5 shadow-soft"
-                >
-                  <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="font-display text-lg font-bold text-primary">
-                    {meta.label}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {meta.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((post, index) => (
               <motion.article
@@ -223,7 +261,7 @@ const Blog = () => {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "0px 0px -15% 0px" }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
+                transition={{ duration: 0.4, delay: (index % 3) * 0.06 }}
                 className="group flex h-full flex-col rounded-2xl border border-border/70 bg-background p-6 shadow-soft transition-all hover:-translate-y-1 hover:border-secondary/50 hover:shadow-elevated"
               >
                 <CategoryBadge category={post.category} />
@@ -243,9 +281,17 @@ const Blog = () => {
           </div>
 
           {filtered.length === 0 && (
-            <p className="mt-12 text-center text-muted-foreground">
-              Aucune publication pour cette catégorie pour le moment.
-            </p>
+            <div className="rounded-3xl border border-border bg-background p-12 text-center shadow-soft">
+              <p className="mb-5 text-muted-foreground">
+                Aucun article ne correspond à votre recherche.
+              </p>
+              <Button
+                onClick={resetFilters}
+                className="rounded-full bg-primary text-primary-foreground"
+              >
+                Réinitialiser les filtres
+              </Button>
+            </div>
           )}
         </div>
       </section>
