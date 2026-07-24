@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { PageHeader } from "@/components/PageHeader";
 import { cn } from "@/lib/utils";
 import { useStrapiOpportunities } from "@/hooks/useStrapiOpportunities";
+import { useLoadMore } from "@/hooks/useLoadMore";
 
 type OppType =
   | "Emploi"
@@ -296,6 +297,13 @@ const JobBoard = () => {
   const featured = filtered.filter((opportunity) => opportunity.featured).slice(0, 3);
   const regular = filtered.filter((opportunity) => !featured.includes(opportunity));
 
+  const {
+    visible: visibleRegular,
+    hasMore,
+    remaining,
+    showMore,
+  } = useLoadMore(regular, 6, `${filter}|${location}|${query}`);
+
   return (
     <>
       <PageHeader
@@ -428,10 +436,23 @@ const JobBoard = () => {
                   </p>
                 </div>
                 <div className="grid gap-6 md:grid-cols-2">
-                  {regular.map((opportunity, index) => (
+                  {visibleRegular.map((opportunity, index) => (
                     <OpportunityCard key={opportunity.title} opportunity={opportunity} index={index} />
                   ))}
                 </div>
+
+                {hasMore && (
+                  <div className="mt-12 text-center">
+                    <Button
+                      onClick={showMore}
+                      variant="outline"
+                      className="rounded-full border-2 border-primary px-8 font-semibold text-primary hover:bg-primary hover:text-primary-foreground"
+                    >
+                      Voir plus d'opportunités
+                      <span className="ml-2 text-muted-foreground">({remaining})</span>
+                    </Button>
+                  </div>
+                )}
               </div>
             </>
           )}

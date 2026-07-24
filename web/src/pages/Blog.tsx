@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import { blogPosts, type BlogCategory, type BlogPost } from "@/data/blogPosts";
 import { Link } from "react-router-dom";
 import { useStrapiArticles } from "@/hooks/useStrapiArticles";
+import { useLoadMore } from "@/hooks/useLoadMore";
 
 const categoryMeta: Record<
   BlogCategory,
@@ -132,6 +133,13 @@ const Blog = () => {
   const articles = featured
     ? filtered.filter((post) => post.title !== featured.title)
     : filtered;
+
+  const {
+    visible: visibleArticles,
+    hasMore,
+    remaining,
+    showMore,
+  } = useLoadMore(articles, 9, `${active}|${query}`);
 
   return (
     <>
@@ -266,7 +274,7 @@ const Blog = () => {
           )}
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {articles.map((post, index) => (
+            {visibleArticles.map((post, index) => (
               <motion.article
                 key={post.title}
                 initial={{ opacity: 0, y: 24 }}
@@ -290,6 +298,19 @@ const Blog = () => {
               </motion.article>
             ))}
           </div>
+
+          {hasMore && (
+            <div className="mt-12 text-center">
+              <Button
+                onClick={showMore}
+                variant="outline"
+                className="rounded-full border-2 border-primary px-8 font-semibold text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                Voir plus d'articles
+                <span className="ml-2 text-muted-foreground">({remaining})</span>
+              </Button>
+            </div>
+          )}
 
           {filtered.length === 0 && (
             <div className="rounded-3xl border border-border bg-background p-12 text-center shadow-soft">
