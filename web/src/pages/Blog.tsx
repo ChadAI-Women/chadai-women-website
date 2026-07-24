@@ -111,7 +111,7 @@ const Blog = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px -15% 0px" }}
             transition={{ duration: 0.45 }}
             className="mb-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end"
           >
@@ -152,7 +152,7 @@ const Blog = () => {
             <motion.article
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.45 }}
               className="mb-12 grid overflow-hidden rounded-3xl border border-primary/10 bg-background shadow-elevated lg:grid-cols-[1.05fr_0.95fr]"
             >
@@ -222,7 +222,7 @@ const Blog = () => {
                 key={post.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
                 transition={{ duration: 0.4, delay: index * 0.06 }}
                 className="group flex h-full flex-col rounded-2xl border border-border/70 bg-background p-6 shadow-soft transition-all hover:-translate-y-1 hover:border-secondary/50 hover:shadow-elevated"
               >

@@ -20,7 +20,7 @@ export const HomePreviewSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px -15% 0px" }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -41,7 +41,7 @@ export const HomePreviewSection = () => {
               key={preview.to}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
               <Link

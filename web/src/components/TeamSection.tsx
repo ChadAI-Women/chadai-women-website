@@ -58,7 +58,7 @@ const MemberCard = ({
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
+    viewport={{ once: true, margin: "0px 0px -15% 0px" }}
     transition={{ duration: 0.4, delay: (index % 4) * 0.08 }}
     className="group flex h-full flex-col overflow-hidden rounded-b-2xl rounded-t-[999px] bg-card shadow-soft transition-all hover:-translate-y-2 hover:shadow-elevated"
   >
@@ -143,7 +143,7 @@ export const TeamSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px -15% 0px" }}
           transition={{ duration: 0.5 }}
           className="mt-16 rounded-3xl border-2 border-dashed border-secondary/50 p-8 text-center md:p-10"
         >

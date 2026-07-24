@@ -208,7 +208,7 @@ const OpportunityCard = ({ opportunity, index }: { opportunity: Opportunity; ind
     <motion.article
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "0px 0px -15% 0px" }}
       transition={{ duration: 0.35, delay: (index % 4) * 0.05 }}
       className="group flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:border-secondary/50 hover:shadow-elevated"
     >

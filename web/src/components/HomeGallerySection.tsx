@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { FlagDash } from "@/components/FlagDash";
+import { RevealImage } from "@/components/RevealImage";
 import { homeGalleryPhotos } from "@/data/galleryPhotos";
+import { revealViewport } from "@/lib/motion";
 
 export const HomeGallerySection = () => {
   return (
@@ -11,7 +13,7 @@ export const HomeGallerySection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px -15% 0px" }}
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-14"
         >
@@ -34,14 +36,14 @@ export const HomeGallerySection = () => {
               key={photo.src}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={revealViewport}
               transition={{ duration: 0.5, delay: i * 0.06 }}
               className="group relative overflow-hidden rounded-2xl bg-background shadow-soft hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
             >
-              <img
+              <RevealImage
                 src={photo.src}
                 alt={photo.alt}
-                loading="lazy"
+                wrapperClassName="w-full h-64"
                 className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5">

@@ -165,7 +165,7 @@ const SectionHeader = ({
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
+    viewport={{ once: true, margin: "0px 0px -15% 0px" }}
     transition={{ duration: 0.6 }}
     className="text-center max-w-2xl mx-auto mb-14"
   >
@@ -195,7 +195,7 @@ const About = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.6 }}
             >
               <span className="inline-flex items-center gap-3 text-secondary-ink font-semibold uppercase tracking-widest text-sm mb-4">
@@ -232,7 +232,7 @@ const About = () => {
             <motion.aside
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.8 }}
               className="text-center"
             >
@@ -261,7 +261,7 @@ const About = () => {
               id="mission"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.6 }}
               className="scroll-mt-24 gradient-primary rounded-3xl p-8 md:p-10 text-primary-foreground"
             >
@@ -288,7 +288,7 @@ const About = () => {
               id="vision"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.6 }}
               className="scroll-mt-24 gradient-accent rounded-3xl p-8 md:p-10 text-secondary-foreground"
             >
@@ -328,7 +328,7 @@ const About = () => {
                 key={obj.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="bg-background rounded-2xl p-7 border border-border/60 shadow-sm hover:shadow-elevated hover:-translate-y-1 transition-all"
               >
@@ -373,7 +373,7 @@ const About = () => {
                 key={v.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className={[
                   "group relative min-h-[260px] overflow-hidden rounded-[2rem] p-7 shadow-soft transition-all duration-300 hover:-translate-y-2 hover:shadow-elevated",
@@ -476,7 +476,7 @@ const About = () => {
                 key={act.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="bg-background rounded-2xl p-7 border border-border/60 shadow-sm hover:shadow-elevated hover:-translate-y-1 transition-all"
               >
@@ -516,7 +516,7 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px -15% 0px" }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto mb-12"
           >
@@ -533,7 +533,7 @@ const About = () => {
                 key={item}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -10 : 10 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
                 className="flex items-start gap-3"
               >
@@ -555,7 +555,7 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px -15% 0px" }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >

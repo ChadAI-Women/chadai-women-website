@@ -246,7 +246,7 @@ const Programs = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.45 }}
             >
               <span className="mb-3 inline-block text-sm font-bold uppercase tracking-[0.22em] text-secondary-ink">
@@ -259,7 +259,7 @@ const Programs = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.45, delay: 0.08 }}
               className="text-lg leading-relaxed text-muted-foreground"
             >
@@ -276,7 +276,7 @@ const Programs = () => {
                 href={`#${program.id}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px -15% 0px" }}
                 transition={{ duration: 0.4, delay: index * 0.06 }}
                 className="group rounded-2xl border border-primary/10 bg-background p-6 shadow-soft transition-all hover:-translate-y-1 hover:border-secondary/50 hover:shadow-elevated"
               >
@@ -319,7 +319,7 @@ const Programs = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.45 }}
               className="hidden justify-center md:flex"
             >
@@ -535,7 +535,7 @@ const Programs = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
               transition={{ duration: 0.45 }}
               className="mb-7 grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end"
             >
@@ -563,7 +563,7 @@ const Programs = () => {
                   key={item.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "0px 0px -15% 0px" }}
                   transition={{ duration: 0.4, delay: itemIndex * 0.08 }}
                   className="flex h-full flex-col rounded-2xl border border-border/70 bg-background p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
                 >
