@@ -15,8 +15,20 @@ type Member = {
 const chadAILinkedIn = "https://www.linkedin.com/company/chadai-women";
 
 const bureau: Member[] = [
-  { name: "Présidence", role: "Coordination générale", linkedin: chadAILinkedIn },
-  { name: "Vice-présidence", role: "Co-coordination", linkedin: chadAILinkedIn },
+  {
+    name: "Lauriane MBAGDJE DORENAN",
+    role: "Coordonnatrice générale",
+    photo: "/photos/Lauriane MBAGDJE DORENAN (2).png",
+    expertise: "Data Scientist",
+    linkedin: "https://www.linkedin.com/in/lauriane-mbagdje-dorenan",
+  },
+  {
+    name: "Koubra GABY",
+    role: "Coordonnatrice adjointe",
+    photo: "/photos/Koubra-GABY.jpeg",
+    expertise: "Ingénieure en informatique",
+    linkedin: "https://linkedin.com/in/koubra-gaby-309a50250",
+  },
   { name: "Secrétariat général", role: "Organisation & suivi", linkedin: chadAILinkedIn },
   { name: "Trésorerie", role: "Gestion financière", linkedin: chadAILinkedIn },
 ];
@@ -122,8 +134,8 @@ const MemberCard = ({
 
 export const TeamSection = () => {
   return (
-    <section id="equipe" className="bg-background py-20">
-      <div className="section-container">
+    <section id="equipe" className="team-section-bg relative overflow-hidden py-20">
+      <div className="section-container relative z-10">
         <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-6">
           {bureau.map((member, index) => (
             <MemberCard key={member.role} member={member} index={index} />
@@ -145,7 +157,7 @@ export const TeamSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "0px 0px -15% 0px" }}
           transition={{ duration: 0.5 }}
-          className="mt-16 rounded-3xl border-2 border-dashed border-secondary/50 p-8 text-center md:p-10"
+          className="mt-16 rounded-3xl border-2 border-dashed border-secondary/50 bg-card/80 p-8 text-center shadow-soft backdrop-blur md:p-10"
         >
           <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10">
             <Plus className="h-6 w-6 text-secondary" />
